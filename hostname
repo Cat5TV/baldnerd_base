@@ -1,0 +1,11 @@
+#!/bin/bash
+
+hostname=debian
+
+hn=$(/bin/hostname)
+printf "Changing Hostname... "
+/bin/sed -i -- 's/'"$hn"'/'"$hostname"'/g' /etc/hosts
+/bin/sed -i -- 's/'"$hn"'/'"$hostname"'/g' /etc/hostname
+hostnamectl set-hostname $hostname
+echo Done.
+echo Change will take effect at next reboot.
