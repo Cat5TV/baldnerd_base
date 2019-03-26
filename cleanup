@@ -86,4 +86,4 @@ Appreciate what I do?
 ' > /etc/motd
 
 # Write zeros to unused blocks before halting to create the img
-dd if=/dev/zero bs=1M of=/root/.null && sync && rm /root/null && sync && halt
+dd if=/dev/zero bs=1M of=/root/.null && sync && rm /root/.null && sync && halt
