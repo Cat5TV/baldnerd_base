@@ -3,7 +3,6 @@
 # Delete system email
 rm /var/spool/mail/*
 
-
 # Remove nano search history and such
 rm -rf /root/.nano
 rm -rf /home/*/.nano
