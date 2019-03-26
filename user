@@ -1,0 +1,15 @@
+#!/bin/bash
+
+userpass=baldnerd
+
+# Create default user
+adduser --disabled-password --gecos "" $userpass
+
+# Allow user to become super-user
+usermod -aG sudo $userpass
+
+# Set the user password
+echo -e "${userpass}\n${userpass}" | passwd $userpass >/tmp/init 2>&1
+
+# Add to sudoers and disable root login if that's successful
+usermod -aG sudo $userpass && passwd -l root
