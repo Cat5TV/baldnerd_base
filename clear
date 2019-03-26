@@ -1,0 +1,2 @@
+#!/bin/bash
+dd if=/dev/zero bs=1M of ~/nulls ; sync ; rm ~/nulls ; halt
