@@ -11,5 +11,17 @@ usermod -aG sudo $userpass
 # Set the user password
 echo -e "${userpass}\n${userpass}" | passwd $userpass >/tmp/init 2>&1
 
+echo "Reconnect as ${userpass}"
+
 # Add to sudoers and disable root login if that's successful
 usermod -aG sudo $userpass && passwd -l root
+
+# Delete any non-root user and remove their home folder (eg: pi)
+userdel -f -r pi
+userdel -f -r test #armbian
+userdel -f -r odroid
+userdel -f -r rock64
+userdel -f -r linaro # ASUS TinkerBoard
+userdel -f -r dietpi
+userdel -f -r pine # Pine A64+
+userdel -f -r pine64 # Sopine
