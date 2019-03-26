@@ -1,0 +1,10 @@
+#!/bin/bash
+
+  # Configure timezone
+  dpkg-reconfigure tzdata
+
+  # Configure locale
+  dpkg-reconfigure locales
+
+  # Configure the keyboard locale (will be skipped if keyboard is not connected)
+  dpkg-reconfigure keyboard-configuration && service keyboard-setup restart
