@@ -69,4 +69,4 @@ Debian Base Image by Robbie Ferguson // BaldNerd.com
 
 
 # Write zeros to unused blocks before halting to create the img
-#dd if=/dev/zero bs=1M of ~/nulls ; sync ; rm ~/nulls ; halt
+dd if=/dev/zero bs=1M of ~/nulls ; sync ; rm ~/nulls ; halt
