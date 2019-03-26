@@ -62,7 +62,17 @@ touch /etc/update-motd.d/dummy
 rm /etc/update-motd.d/*
 
 # Enable NEMS MOTD
-echo 'Debian Base Image by Robbie Ferguson // BaldNerd.com' > /etc/motd
+echo '
+
+  ____        _     _ _   _              _                      
+ | __ )  __ _| | __| | \ | | ___ _ __ __| |  ___ ___  _ __ ___  
+ |  _ \ / _` | |/ _` |  \| |/ _ \ '__/ _` | / __/ _ \| '_ ` _ \ 
+ | |_) | (_| | | (_| | |\  |  __/ | | (_| || (_| (_) | | | | | |
+ |____/ \__,_|_|\__,_|_| \_|\___|_|  \__,_(_)___\___/|_| |_| |_|
+                                                                
+      Debian Base Image by Robbie Ferguson // BaldNerd.com
+
+' > /etc/motd
 
 
 # Write zeros to unused blocks before halting to create the img
