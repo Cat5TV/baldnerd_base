@@ -1,5 +1,12 @@
 # baldnerd_base
-Linux distribution creation tools for single board computers
+Linux base creation tools for single board computers.
+
+Before proceeding, the following must be achieved:
+
+1) A Debian distro is imaged and booted. All updates / upgrades have been applied, and system is running well.
+2) Date and time are set (best to run *locale* first).
+
+Now, use these scripts:
 
 1) *locale* - Set the timezone and locale. BaldNerd default is America/Toronto, en_US UTF-8.
 2) *user* - Create the default user (baldnerd) and remove any existing user.
