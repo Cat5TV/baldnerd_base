@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# Delete system email
+rm /var/spool/mail/*
+
+
+# Remove nano search history and such
+rm -rf /root/.nano
+rm -rf /home/*/.nano
+
+# Remove ODROID resize log
+rm -rf /root/resize--log.txt
+
+sudo apt-get clean
+sudo apt-get autoclean
+apt-get autoremove
+
+echo "Don't forget to remove the old kernels:"
+dpkg --get-selections | grep linux-image
+
+# Delete all Samba users
+pdbedit -L | while read USER; do pdbedit -x -u $(echo $USER | cut -d: -f1); done
+
+# Empty old logs
+find /var/log/ -type f -exec cp /dev/null {} \;
+find /var/log/ -iname "*.gz" -type f -delete
+find /var/log/ -iname "*.log.*" -type f -delete
+cat /dev/null > /var/log/wtmp
+cat /dev/null > /var/log/btmp
+
+# Clear system mail
+find /var/mail/ -type f -exec cp /dev/null {} \;
+
+rm /root/.nano_history
+rm /root/.bash_history
+rm /home/*/.nano_history
+rm /home/*/.bash_history
+
+
+  rm /var/log/lastlog
+  touch /var/log/lastlog
+
+  # Remove DNS Resolver config (will be auto-generated on first boot)
+  echo "# Default resolv.conf file by Robbie Ferguson // BaldNerd.com
+# Cloudflare
+nameserver 1.1.1.1
+nameserver 1.0.0.1
+nameserver 2606:4700:4700::1111
+nameserver 2606:4700:4700::1001
+# Google
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+nameserver 2001:4860:4860::8888
+nameserver 2001:4860:4860::8844
+" > /etc/resolv.conf
+
+
+# Quick cheat to avoid errors if no files exist
+touch /etc/update-motd.d/dummy
+
+# Remove any MOTD items included with the base distro
+rm /etc/update-motd.d/*
+
+# Enable NEMS MOTD
+echo 'Debian Base Image by Robbie Ferguson // BaldNerd.com' > /etc/motd
+
+
+# Write zeros to unused blocks before halting to create the img
+#dd if=/dev/zero bs=1M of ~/nulls ; sync ; rm ~/nulls ; halt
