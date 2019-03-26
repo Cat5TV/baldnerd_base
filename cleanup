@@ -63,11 +63,9 @@ rm /etc/update-motd.d/*
 
 # Enable NEMS MOTD
 echo '
-
 ****************************************************
 Debian Base Image by Robbie Ferguson // BaldNerd.com
 ****************************************************
-
 ' > /etc/motd
 
 
