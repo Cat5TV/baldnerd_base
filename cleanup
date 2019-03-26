@@ -65,8 +65,17 @@ echo '
 ****************************************************
 Debian Base Image by Robbie Ferguson // BaldNerd.com
 ****************************************************
-' > /etc/motd
 
+Become root user:    sudo su
+Set timezone:        dpkg-reconfigure tzdata
+Set locale:          dpkg-reconfigure locales
+Check date and time: date
+Set date and time:   See https://baldnerd.com/nerdgasms/linuxdate/
+
+Appreciate what I do?
+  - https://donate.category5.tv
+  - https://patreon.com/nemslinux
+' > /etc/motd
 
 # Write zeros to unused blocks before halting to create the img
 dd if=/dev/zero bs=1M of=/root/.null && sync && rm /root/null && sync && halt
