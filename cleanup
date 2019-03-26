@@ -35,12 +35,20 @@ rm /root/.bash_history
 rm /home/*/.nano_history
 rm /home/*/.bash_history
 
+# ROCK64
+rm -rf /var/lib/rock64 # Ayufan's build places a file in that folder which stops it from resizing on boot
 
-  rm /var/log/lastlog
-  touch /var/log/lastlog
+# PINE A64+
+rm -rf /var/lib/pine64 # Ayufan's build places a file in that folder which stops it from resizing on boot
 
-  # Remove DNS Resolver config (will be auto-generated on first boot)
-  echo "# Default resolv.conf file by Robbie Ferguson // BaldNerd.com
+# remove any package data left behind after removal
+apt-get purge $(dpkg -l | awk '/^rc/ { print $2 }')
+ 
+rm /var/log/lastlog
+touch /var/log/lastlog
+
+# Remove DNS Resolver config (will be auto-generated on first boot)
+echo "# Default resolv.conf file by Robbie Ferguson // BaldNerd.com
 # Cloudflare
 nameserver 1.1.1.1
 nameserver 1.0.0.1
