@@ -1,3 +1,4 @@
 #!/bin/bash
 apt update
 apt -y install ntp
+apt -y install sudo # It is seriously missing from the ODROID-N2 if not explicitly installed!
