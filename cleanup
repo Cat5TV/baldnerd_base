@@ -86,8 +86,16 @@ Appreciate what I do?
 ' > /etc/motd
 
 # Write zeros to unused blocks before halting to create the img
-echo "Filling the disk..."
-dd if=/dev/zero bs=1M of=/root/.null && sync && rm /root/.null && sync
+echo "Filling empty space with zeros..."
+dd if=/dev/zero bs=1M of=/root/.null && sync
+while [ -f /root/.null ]
+do
+  sync
+  rm -f /root/.null
+  sync
+  sleep 5
+done
+
 echo "Done. Halting."
 sync
 halt
