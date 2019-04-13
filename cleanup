@@ -89,7 +89,7 @@ Appreciate what I do?
 wget -O /usr/local/bin/nems-fs-resize https://raw.githubusercontent.com/Cat5TV/nems-admin/master/resize_rootfs/nems-fs-resize
 chmod +x /usr/local/bin/nems-fs-resize
 # Adapt script for Bald Nerd Base Image
-/bin/sed -i -- 's,/root/nems/nems-admin/resize_rootfs/nems-fs-resize,/usr/local/bin/nems-fs-resize,g' /etc/rc.local
+/bin/sed -i -- 's,/root/nems/nems-admin/resize_rootfs/nems-fs-resize,/usr/local/bin/nems-fs-resize,g' /usr/local/bin/nems-fs-resize
 addition="/usr/local/bin/nems-fs-resize\n"
 if ! grep -q "nems-fs-resize" /etc/rc.local; then
   if grep -q "exit" /etc/rc.local; then
