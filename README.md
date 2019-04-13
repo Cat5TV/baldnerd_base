@@ -1,6 +1,8 @@
 # baldnerd_base
 Linux base creation tools for single board computers.
 
+You can download pre-built base images from my blog at https://baldnerd.com/sbc-build-base/
+
 Before proceeding, the following must be achieved:
 
 1) A Debian distro is imaged and booted. All updates / upgrades have been applied, and system is running well.
