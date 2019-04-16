@@ -85,6 +85,24 @@ Appreciate what I do?
   - https://patreon.com/nemslinux
 ' > /etc/motd
 
+# enable rc.local service if not already enabled
+if [[ ! -e /etc/systemd/system/rc-local.service ]]; then
+echo "[Unit]
+ Description=/etc/rc.local Compatibility
+ ConditionPathExists=/etc/rc.local
+[Service]
+ Type=forking
+ ExecStart=/etc/rc.local start
+ TimeoutSec=0
+ StandardOutput=tty
+ RemainAfterExit=yes
+ SysVStartPriority=99
+[Install]
+ WantedBy=multi-user.target" > /etc/systemd/system/rc-local.service
+fi
+chmod +x /etc/rc.local
+systemctl enable rc-local
+
 # Prepare filesystem resize on first boot
 wget -O /usr/local/bin/nems-fs-resize https://raw.githubusercontent.com/Cat5TV/nems-admin/master/resize_rootfs/nems-fs-resize
 chmod +x /usr/local/bin/nems-fs-resize
