@@ -15,7 +15,13 @@ echo "[Unit]
 [Install]
  WantedBy=multi-user.target" > /etc/systemd/system/rc-local.service
 fi
+
+if [[ ! -e /etc/rc.local ]]; then
+  echo "#!/bin/sh -e
+exit 0" > /etc/rc.local
+fi
 chmod +x /etc/rc.local
+
 systemctl enable rc-local
 
 # Prepare filesystem resize on first boot
