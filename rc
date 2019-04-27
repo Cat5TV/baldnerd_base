@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# enable rc.local service if not already enabled
+if [[ ! -e /etc/systemd/system/rc-local.service ]]; then
+echo "[Unit]
+ Description=/etc/rc.local Compatibility
+ ConditionPathExists=/etc/rc.local
+[Service]
+ Type=forking
+ ExecStart=/etc/rc.local start
+ TimeoutSec=0
+ StandardOutput=tty
+ RemainAfterExit=yes
+ SysVStartPriority=99
+[Install]
+ WantedBy=multi-user.target" > /etc/systemd/system/rc-local.service
+fi
+chmod +x /etc/rc.local
+systemctl enable rc-local
+
+# Prepare filesystem resize on first boot
+wget -O /usr/local/bin/nems-fs-resize https://raw.githubusercontent.com/Cat5TV/nems-admin/master/resize_rootfs/nems-fs-resize
+chmod +x /usr/local/bin/nems-fs-resize
+# Adapt script for Bald Nerd Base Image
+/bin/sed -i -- 's,/root/nems/nems-admin/resize_rootfs/nems-fs-resize,/usr/local/bin/nems-fs-resize,g' /usr/local/bin/nems-fs-resize
+addition="/usr/local/bin/nems-fs-resize\n"
+if ! grep -q "nems-fs-resize" /etc/rc.local; then
+  if grep -q "exit" /etc/rc.local; then
+    # This file contains an exit command, so make sure our new command comes before it
+    /bin/sed -i -- 's,exit,'"$addition"'exit,g' /etc/rc.local
+  else
+    # No exit command within the file, so just add it
+    echo "PLACEHERE" >> /etc/rc.local
+    /bin/sed -i -- 's,PLACEHERE,'"$addition"'exit 0,g' /etc/rc.local
+  fi
+fi
+
+# Verify the file manually. Raspi has a comment that breaks the rc.local,
+# so this gives me a final chance to confirm everything looks cool
+nano /etc/rc.local
