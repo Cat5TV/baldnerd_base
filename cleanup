@@ -34,6 +34,7 @@ rm /root/.nano_history
 rm /root/.bash_history
 rm /home/*/.nano_history
 rm /home/*/.bash_history
+history -c
 
 # ROCK64
 rm -rf /var/lib/rock64 # Ayufan's build places a file in that folder which stops it from resizing on boot
