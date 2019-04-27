@@ -69,6 +69,11 @@ touch /etc/update-motd.d/dummy
 # Remove any MOTD items included with the base distro
 rm /etc/update-motd.d/*
 
+# Remove symlink or existing motd file
+if [[ -e /etc/motd ]]; then
+  rm -f /etc/motd
+fi
+
 # Enable NEMS MOTD
 echo '
 ****************************************************
