@@ -73,7 +73,9 @@ rm /etc/update-motd.d/*
 
 # Remove symlink or existing motd file
 if [[ -e /etc/motd ]]; then
-  rm -f /etc/motd
+  # remove and touch twice. For some reason this seems required on some boards
+  rm -f /etc/motd && touch /etc/motd
+  rm -f /etc/motd && touch /etc/motd
 fi
 
 # Enable NEMS MOTD
