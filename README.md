@@ -14,5 +14,6 @@ Now, use these scripts:
 2) *base* - Install a very simple base set of tools (this is only a base OS, developers can add what they really need, but I'll install what I think is crucial out of the box).
 3) *user* - Create the default user (baldnerd) and remove any existing user.
 4) *hostname* - Set the hostname to *debian*.
-5) *rc* - Configure and then open rc.local for first-boot (do not reboot after this)
-6) *cleanup* - The final removal of logs, creation of the MOTD, and fill all empty space of disk with zeros before halting for image.
+5) Reboot at this point.
+6) *rc* - Configure and then open rc.local for first-boot (do not reboot after this)
+7) *cleanup* - The final removal of logs, creation of the MOTD, and fill all empty space of disk with zeros before halting for image.
