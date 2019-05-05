@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Armbian
+
+  if [[ -d /usr/lib/armbian ]]; then
+
+    # Stop /tmp and /var/log from being loaded in zram
+    sed -i '/\/tmp/d' /etc/fstab
+    umount /tmp 2>&1
+
+    systemctl stop armbian-zram-config
+    systemctl disable armbian-zram-config
+
+    systemctl stop armbian-ramlog
+    systemctl disable armbian-ramlog
+
+    # Delete the services
+    rm -f /etc/systemd/system/sysinit.target.wants/armbian-*
+
+    # Remove Armbian-specific stuff
+    rm -rf /usr/lib/armbian
+    rm -rf /usr/share/armbian
+    rm -f /boot/armbian_first_run*
+
+    # Change name of armbianEnv file to bootEnv
+    mv /boot/armbianEnv.txt /boot/bootEnv.txt
+    sed -i 's/armbianEnv/bootEnv/g' /boot/boot.cmd
+
+  fi
+
+  reboot

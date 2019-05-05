@@ -10,10 +10,11 @@ Before proceeding, the following must be achieved:
 
 Now, use these scripts:
 
-1) *locale* - Set the timezone and locale. BaldNerd default is America/Toronto, en_US UTF-8.
-2) *base* - Install a very simple base set of tools (this is only a base OS, developers can add what they really need, but I'll install what I think is crucial out of the box).
-3) *user* - Create the default user (baldnerd) and remove any existing user.
-4) *hostname* - Set the hostname to *debian*.
-5) Reboot at this point, and when reconnecting, login as baldnerd/baldnerd, then use sudo su to become root.
-6) *rc* - Configure and then open rc.local for first-boot (do not reboot after this)
-7) *cleanup* - The final removal of logs, creation of the MOTD, and fill all empty space of disk with zeros before halting for image.
+1) *prep* - Prepare the system before building. Will force a reboot.
+2) *locale* - Set the timezone and locale. BaldNerd default is America/Toronto, en_US UTF-8.
+3) *base* - Install a very simple base set of tools (this is only a base OS, developers can add what they really need, but I'll install what I think is crucial out of the box).
+4) *user* - Create the default user (baldnerd) and remove any existing user.
+5) *hostname* - Set the hostname to *debian*.
+6) Reboot at this point, and when reconnecting, login as baldnerd/baldnerd, then use sudo su to become root.
+7) *rc* - Configure and then open rc.local for first-boot (do not reboot after this)
+8) *cleanup* - The final removal of logs, creation of the MOTD, and fill all empty space of disk with zeros before halting for image.
