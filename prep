@@ -21,6 +21,7 @@
     rm -rf /usr/lib/armbian
     rm -rf /usr/share/armbian
     rm -f /boot/armbian_first_run*
+    apt -y remove --purge armbian-config
 
     # Change name of armbianEnv file to bootEnv
     mv /boot/armbianEnv.txt /boot/bootEnv.txt
